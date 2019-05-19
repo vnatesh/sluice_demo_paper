@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  15 MAY 2019 07:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  18 MAY 2019 21:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1088,16 +1088,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 10.0pt
-(hyperref)                replaced by space on input line 62.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 10.0pt
-(hyperref)                replaced by space on input line 62.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 62.
 
 
@@ -1110,13 +1100,15 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 10.0pt
-(hyperref)                replaced by space on input line 62.
+(hyperref)                removing `math shift' on input line 62.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 10.0pt
-(hyperref)                replaced by space on input line 62.
+(hyperref)                removing `superscript' on input line 62.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 62.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1141,55 +1133,28 @@ Overfull \hbox (11.65915pt too wide) in paragraph at lines 2--5
 -gence of pro-grammable
  []
 
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 10.0pt on input line 13.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 14.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.2pt on input line 14.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-<figures/mouse.pdf, id=31, 151.56625pt x 134.5025pt>
-File: figures/mouse.pdf Graphic file (type pdf)
- <use figures/mouse.pdf>
-Package pdftex.def Info: figures/mouse.pdf used on input line 8.
-(pdftex.def)             Requested size: 151.56587pt x 134.50215pt.
-
-[1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
- <./figures/mouse.pdf>]
-(/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 23.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 24.
-
-Overfull \hbox (2.45499pt too wide) in paragraph at lines 32--33
-[][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (23.4552pt too wide) in paragraph at lines 59--60
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (23.4552pt too wide) in paragraph at lines 60--61
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (19.25516pt too wide) in paragraph at lines 64--66
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-))
+])
 No file paper.bbl.
 - LAST -
-Extra skip:98.84702pt
-Left:587.39996pt/0.11499pt
-Right:488.49994pt/0.168pt
-Output:587.94995pt
+Extra skip:15.062pt
+Left:300.0pt/2.23pt
+Right:287.0pt/0.168pt
+Output:300.5pt
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 69.
 [2.2]
@@ -1199,29 +1164,31 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 69.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 7963748E95A8FFE2B9FE7BB6E62FAA6E;808.
+(rerunfilecheck)             Checksum: A670B070BAA08C1D873D94987390C12F;922.
  ) 
 Here is how much of TeX's memory you used:
- 20094 strings out of 492995
- 300278 string characters out of 6132704
- 536989 words of memory out of 5000000
- 22934 multiletter control sequences out of 15000+600000
- 114826 words of font info for 201 fonts, out of 8000000 for 9000
+ 19670 strings out of 492995
+ 296086 string characters out of 6132704
+ 429667 words of memory out of 5000000
+ 22554 multiletter control sequences out of 15000+600000
+ 129695 words of font info for 226 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,1300b,1224s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,1300b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc
-}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{
-/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB
-.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibert
-ineT.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLi
-bertineTB.pfb>
-Output written on paper.pdf (2 pages, 297098 bytes).
+}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{
+/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/
+usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.
+pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLiberti
+neT.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLib
+ertineTB.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/L
+inLibertineTI.pfb>
+Output written on paper.pdf (2 pages, 332610 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 121 compressed objects within 2 object streams
- 60 named destinations out of 1000 (max. 500000)
- 28738 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 86 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
+ 36421 words of extra memory for PDF output out of 42996 (max. 10000000)
 
