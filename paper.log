@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 MAY 2019 08:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 MAY 2019 08:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1128,39 +1128,42 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 1.
 
-Overfull \hbox (11.65915pt too wide) in paragraph at lines 2--4
+Overfull \hbox (11.65915pt too wide) in paragraph at lines 2--5
 \T1/LinuxLibertineT-TLF/m/n/10 (-20) The last sev-eral years have seen the emer
 -gence of pro-grammable
  []
 
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 4.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 4.
 <figures/exp_obs_cdf.png, id=35, 578.16pt x 216.81pt>
 File: figures/exp_obs_cdf.png Graphic file (type png)
 
 <use figures/exp_obs_cdf.png>
 Package pdftex.def Info: figures/exp_obs_cdf.png used on input line 8.
 (pdftex.def)             Requested size: 404.70924pt x 151.76596pt.
-
-Underfull \vbox (badness 1242) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 10.0pt on input line 13.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 14.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 14.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 7.3pt on input line 14.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 6.2pt on input line 14.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./figures/exp_obs_cdf.png>])
+ <./figures/exp_obs_cdf.png>]
+Underfull \vbox (badness 1377) has occurred while \output is active []
+
+)
 No file paper.bbl.
 - LAST -
-Extra skip:58.30699pt
-Left:415.0pt/0.11499pt
+Extra skip:23.30699pt
+Left:380.0pt/0.11499pt
 Right:356.64pt/0.168pt
-Output:414.81999pt
+Output:380.31999pt
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 69.
 [2.2]
@@ -1173,13 +1176,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: A670B070BAA08C1D873D94987390C12F;922.
  ) 
 Here is how much of TeX's memory you used:
- 19689 strings out of 492995
- 296497 string characters out of 6132704
+ 19690 strings out of 492995
+ 296494 string characters out of 6132704
  433667 words of memory out of 5000000
  22563 multiletter control sequences out of 15000+600000
- 130655 words of font info for 230 fonts, out of 8000000 for 9000
+ 130648 words of font info for 231 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,1343b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,1299b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc
 }{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{
@@ -1191,10 +1194,10 @@ pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLiberti
 neT.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLib
 ertineTB.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/L
 inLibertineTI.pfb>
-Output written on paper.pdf (2 pages, 350564 bytes).
+Output written on paper.pdf (2 pages, 350549 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream
  12 named destinations out of 1000 (max. 500000)
- 38474 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 36426 words of extra memory for PDF output out of 42996 (max. 10000000)
 
