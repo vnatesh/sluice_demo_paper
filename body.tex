@@ -33,7 +33,7 @@ In the Sluice model, a network-wide program consists of high-level code \textit{
 \end{figure}
   
 \subsection{Streaming Algorithms}
-This example demonstrates a simple join-filter operation between two streams. A stream is an unbounded table where a packet represents a tuple of data (ad\_id, impression\_time, click\_time) enclosed in a custom header. The topology in Figure 4 describes the data flow and shows how an operator query runs on the switches of the network. Host 1 sends a stream of ad impressions while Host 2 sends a stream of ad clicks. The two streams are joined on the "ad\_id" field at s1 and filtered on the "ad\_id" field at s2 and the result is sent to h3. 
+This example demonstrates a simple join-filter operation between two streams. A stream is an unbounded table where a packet represents a tuple of data (\textit{ad\_id, impression\_time, click\_time}) enclosed in a custom header. The topology in Figure 4 describes the data flow and shows how an operator query runs on the switches of the network. Host 1 sends a stream of ad impressions while Host 2 sends a stream of ad clicks. The two streams are joined on the "ad\_id" field at s1 and filtered on the "ad\_id" field at s2 and the result is sent to h3. 
 
 \begin{figure}[tp]
 \centering
