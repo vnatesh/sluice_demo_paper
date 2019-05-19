@@ -16,15 +16,8 @@ In the Sluice model, a network-wide program consists of high-level code \textit{
  
 \subsection{Traffic Matrix}
 
-\noindent Figure 2 displays the Mininet network topology and simulation components. Packets flow over UDP between virtual hosts, through a network of virtual programmable switches. The codelet in Figure 3 is a Sluice program with a single snippet 'traffic\_example' that is launched on all switches of the network. To run the simulation, the user passes the Sluice program and network topology to the compiler. The compiler generates P4 code to run on each switch as well as control plane table entries for routing packets through the topology.  \\
+\noindent Figure 2 displays the Mininet network topology and simulation components. Packets flow over UDP between virtual hosts, through a network of virtual programmable switches. Figure 3  is a Sluice program with a single snippet 'traffic\_example' that is launched on all switches of the network. To run the simulation, the user passes the Sluice program and network topology to the compiler. The compiler generates P4 code to run on each switch as well as control plane table entries for routing packets through the topology.  \\
 \indent This demo shows how a simple Sluice program can be used to program each switch to measure link usage and hop counts for a specific flow of user-defined packets on UDP srcPort 1234. Each packet 'p' contains a custom header 'nhops' that will be used by the host to maintain a time-series of hop counts. Specifically, nhops is incremented each time the packet enters a switch, i.e. on each hop. Each switch maintains a stateful register counter 'cnt', indexed by switch ingress port, that tracks how many packets, on the particular UDP flow 1234, have entered through that ingress port. Aggregated over all switches, these counters data represent a matrix measuring each link's usage in the network. This matrix (residing on the whole network) is then queried regularly from the control plane to generate time-series plots of link-utilization and queue depth.  
-
-\begin{figure}[tp]
-\centering
-\includegraphics[width=80mm,scale=0.7]{figures/exp_obs_cdf}
-\caption{Expected vs Observed Packet Rate CDF on ('s1','s2')}
-\end{figure}
-
 
 \begin{figure}[tp]
 \centering
@@ -32,12 +25,24 @@ In the Sluice model, a network-wide program consists of high-level code \textit{
 \caption{Topology For Traffic Matrix Demo}
 \end{figure}
 
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=80mm,scale=0.7]{figures/exp_obs_cdf}
+\caption{CDF of Packet Rate on link s1-s2}
+\end{figure}
   
 \subsection{Streaming Algorithms}
 This example demonstrates a simple join-filter operation between two streams. A stream is an unbounded table where a packet represents a tuple of data (ad\_id, impression\_time, click\_time) enclosed in a custom header. The topology in Figure 4 describes the data flow and shows how an operator query runs on the switches of the network. Host 1 sends a stream of ad impressions while Host 2 sends a stream of ad clicks. The two streams are joined on the "ad\_id" field at s1 and filtered on the "ad\_id" field at s2 and the result is sent to h3. 
 
+\begin{figure}[tp]
+\centering
+\includegraphics[width=80mm,scale=0.7]{figures/streaming_example}
+\caption{streaming example topology, data flow, and code placement on switches}
+\end{figure}
+
 
 \section{Future Work}
-We plan to focus on using the dependency DAG to provide several optimizations. For example, it is possible that certain lines of code in a snippet cannot be run on the device annotated by the operator. Since programmable switching chips do not support floating point or complex string operations, code containing such features must be moved to the control plane or end host while at the same time, preserving the original program semantics intended by the operator. The issue of code movement is particularly interesting in the context of multi-tenant data centers. Here, each tenant manages their own virtual network, which is mapped to physical nodes at the data center. If each tenant wants to run their own network-wide program on their virtual topology, the data center operator will need to merge all these into one data plane implementation that runs on the entire physical network. We will continue to develop Sluice with the hope that it may virtualize the data plane, in the same way as network virtualization virtualized the control plane.
+We plan to focus on using the dependency DAG to provide several optimizations. For example, it is possible that certain lines of code in a snippet cannot be run on the device annotated by the operator. Since programmable switching chips do not support floating point or complex string operations, code containing such features must be moved to the control plane or end host while at the same time, preserving the original program semantics intended by the operator. The issue of code movement is particularly interesting in the context of multi-tenant data centers. Here, each tenant mas1nages their own virtual network, which is mapped to physical nodes at the data center. If each tenant wants to run their own network-wide program on their virtual topology, the data center operator will need to merge all these into one data plane implementation that runs on the entire physical network. We will continue to develop Sluice with the hope that it may virtualize the data plane, in the same way as network virtualization virtualized the control plane.
 
 \section{References}
