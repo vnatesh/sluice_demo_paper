@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 MAY 2019 08:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 MAY 2019 09:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1133,40 +1133,45 @@ Overfull \hbox (11.65915pt too wide) in paragraph at lines 2--5
 -gence of pro-grammable
  []
 
-<figures/exp_obs_cdf.png, id=35, 578.16pt x 216.81pt>
-File: figures/exp_obs_cdf.png Graphic file (type png)
-
-<use figures/exp_obs_cdf.png>
-Package pdftex.def Info: figures/exp_obs_cdf.png used on input line 8.
-(pdftex.def)             Requested size: 404.70924pt x 151.76596pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 13.
+(Font)              scaled to size 10.0pt on input line 7.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 14.
+(Font)              scaled to size 10.0pt on input line 8.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 14.
+(Font)              scaled to size 7.3pt on input line 8.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 14.
+(Font)              scaled to size 7.3pt on input line 8.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 14.
+(Font)              scaled to size 6.2pt on input line 8.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./figures/exp_obs_cdf.png>]
-Underfull \vbox (badness 1377) has occurred while \output is active []
+]
+<figures/exp_obs_cdf.png, id=47, 578.16pt x 216.81pt>
+File: figures/exp_obs_cdf.png Graphic file (type png)
 
+<use figures/exp_obs_cdf.png>
+Package pdftex.def Info: figures/exp_obs_cdf.png used on input line 24.
+(pdftex.def)             Requested size: 404.70924pt x 151.76596pt.
+
+<figures/traf_mat_topo.png, id=49, 204.2832pt x 79.9788pt>
+File: figures/traf_mat_topo.png Graphic file (type png)
+
+<use figures/traf_mat_topo.png>
+Package pdftex.def Info: figures/traf_mat_topo.png used on input line 31.
+(pdftex.def)             Requested size: 142.99725pt x 55.98477pt.
 )
 No file paper.bbl.
 - LAST -
-Extra skip:23.30699pt
-Left:380.0pt/0.11499pt
-Right:356.64pt/0.168pt
-Output:380.31999pt
+Extra skip:1.47012pt
+Left:394.91812pt/2.36pt
+Right:395.64pt/0.168pt
+Output:401.77905pt
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 69.
-[2.2]
+[2.2 <./figures/exp_obs_cdf.png> <./figures/traf_mat_topo.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
  (./paper.aux)
@@ -1176,13 +1181,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: A670B070BAA08C1D873D94987390C12F;922.
  ) 
 Here is how much of TeX's memory you used:
- 19690 strings out of 492995
- 296494 string characters out of 6132704
- 433667 words of memory out of 5000000
- 22563 multiletter control sequences out of 15000+600000
+ 19696 strings out of 492995
+ 296646 string characters out of 6132704
+ 428667 words of memory out of 5000000
+ 22567 multiletter control sequences out of 15000+600000
  130648 words of font info for 231 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,11n,94p,1299b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,94p,1299b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc
 }{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{
@@ -1194,10 +1199,10 @@ pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLiberti
 neT.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLib
 ertineTB.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/L
 inLibertineTI.pfb>
-Output written on paper.pdf (2 pages, 350549 bytes).
+Output written on paper.pdf (2 pages, 366833 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 36426 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 94 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 36431 words of extra memory for PDF output out of 42996 (max. 10000000)
 
