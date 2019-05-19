@@ -1,2 +1,2 @@
-# Sluice Demo Paper Latex Template for SIGCOMM 2018
+# Sluice Demo Paper Latex Template for SIGCOMM 2019
 
