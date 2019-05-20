@@ -19,13 +19,6 @@ programming model to express and implement general functionality at the level
 of an entire network, without having to individually program each network
 device.
 
-\begin{figure}[tp]
-\centering
-\includegraphics[width=80mm,scale=0.7]{figures/sluice_workflow.png}
-\caption{Sluice Workflow}
-\end{figure}
-
-
 Maple was an early example of a network-wide programming model designed
 for OpenFlow switches. Maple automatically divided functionality between a
 stateless component running on switches and a stateful component running on the
@@ -50,6 +43,12 @@ network programs for various functions such as scheduling, measurement, and
 application offloading.  We demonstrate Sluice's functionality and ease of use
 via two examples: traffic matrix generation for network analysis and a
 streaming join-filter operation.
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=80mm,scale=0.7]{figures/sluice_workflow.png}
+\caption{Sluice Workflow}
+\end{figure}
 
 \section{Sluice Design}
 In the Sluice model, a network-wide program consists of high-level code
