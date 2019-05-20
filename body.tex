@@ -5,7 +5,13 @@ The last several years have seen the emergence of programmable network devices i
 
 \section{Sluice Design}
 In the Sluice model, a network-wide program consists of high-level code \textit{snippets} annotated by the operator to run on particular devices in a network. The code in each snippet is to be executed on packets arriving at its corresponding device. Snippets support a variety of operations : read-from/write-to packets; arithmetic using packet data, local variables, or stateful register arrays; control flow statements. To handle computation on custom packet headers not supported by default (ip/tcp/udp/eth), users may define packet declarations similar to C structs. An optional annotation in the declaration, the parser condition, automatically generates a header parser. This lets the user restrict snippets to operate on specific flows or IP address ranges. Sluice programs may also import device-specific variables/attributes for use in code snippets. \\
-\indent The compiler translates each snippet of a sluice program into a device-specific program. After initial parsing, a snippet is decomposed into a directed acyclic graph (DAG) that maps dependencies between variables in each snippet. This graph is then passed to the backend of the compiler that generates the corresponding P4 program for that device, for example bmv2 or Tofino \footnote{Currently we only support bmv2 but plan to support more devices}. Sluice automatically reduces the amount of boilerplate code needed to write an equivalent program in P4. For instance, the 9 line traffic matrix sluice program translates into over 200 lines of P4 code. Overall, Sluice provides the same functionality as P4 but makes it easier to program the data plane of an entire network
+\indent Figure 1 describes the Sluice workflow. The compiler translates each snippet of a sluice program into a device-specific program. After initial parsing, a snippet is decomposed into a directed acyclic graph (DAG) that maps dependencies between variables in each snippet. This graph is then passed to the backend of the compiler that generates the corresponding P4 program for that device, for example bmv2 or Tofino \footnote{Currently we only support bmv2 but plan to support more devices}. Sluice automatically reduces the amount of boilerplate code needed to write an equivalent program in P4. For instance, the 9 line traffic matrix sluice program translates into over 200 lines of P4 code. Overall, Sluice provides the same functionality as P4 but makes it easier to program the data plane of an entire network. 
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=80mm,scale=0.7]{figures/sluice_workflow.png}
+\caption{Sluice Workflow}
+\end{figure}
 
 
  

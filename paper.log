@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 MAY 2019 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  20 MAY 2019 00:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1147,48 +1147,55 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+<figures/sluice_workflow.png, id=36, 834.11626pt x 177.66376pt>
+File: figures/sluice_workflow.png Graphic file (type png)
+
+<use figures/sluice_workflow.png>
+Package pdftex.def Info: figures/sluice_workflow.png used on input line 12.
+(pdftex.def)             Requested size: 583.87741pt x 124.36377pt.
+
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 19--20
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
 
 [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-]
+ <./figures/sluice_workflow.png>]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 20.
+(Font)              scaled to size 7.0pt on input line 26.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 7.0pt on input line 21.
+(Font)              scaled to size 7.0pt on input line 27.
 
-<figures/traf_mat_topo.png, id=47, 204.2832pt x 79.9788pt>
+<figures/traf_mat_topo.png, id=51, 204.2832pt x 79.9788pt>
 File: figures/traf_mat_topo.png Graphic file (type png)
 
 <use figures/traf_mat_topo.png>
-Package pdftex.def Info: figures/traf_mat_topo.png used on input line 37.
+Package pdftex.def Info: figures/traf_mat_topo.png used on input line 43.
 (pdftex.def)             Requested size: 142.99725pt x 55.98477pt.
 
-<figures/exp_obs_cdf.png, id=49, 578.16pt x 216.81pt>
+<figures/exp_obs_cdf.png, id=52, 578.16pt x 216.81pt>
 File: figures/exp_obs_cdf.png Graphic file (type png)
 
 <use figures/exp_obs_cdf.png>
-Package pdftex.def Info: figures/exp_obs_cdf.png used on input line 44.
+Package pdftex.def Info: figures/exp_obs_cdf.png used on input line 50.
 (pdftex.def)             Requested size: 404.70924pt x 151.76596pt.
 
-<figures/streaming_example.png, id=50, 724.7075pt x 449.68pt>
+<figures/streaming_example.png, id=53, 724.7075pt x 449.68pt>
 File: figures/streaming_example.png Graphic file (type png)
 
 <use figures/streaming_example.png>
-Package pdftex.def Info: figures/streaming_example.png used on input line 53.
+Package pdftex.def Info: figures/streaming_example.png used on input line 59.
 (pdftex.def)             Requested size: 507.2918pt x 314.77385pt.
 )
 No file paper.bbl.
 - LAST -
-Extra skip:26.46106pt
-Left:578.31808pt/0.11499pt
-Right:551.80402pt/0.168pt
-Output:570.06105pt
+Extra skip:6.14108pt
+Left:612.31808pt/2.36pt
+Right:608.369pt/0.168pt
+Output:606.72855pt
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 69.
 [2.2 <./figures/traf_mat_topo.png> <./figures/exp_obs_cdf.png> <./figures/strea
@@ -1200,12 +1207,16 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 69.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: A670B070BAA08C1D873D94987390C12F;922.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 19974 strings out of 492995
- 300520 string characters out of 6132704
- 474124 words of memory out of 5000000
- 22771 multiletter control sequences out of 15000+600000
+ 19980 strings out of 492995
+ 300682 string characters out of 6132704
+ 465385 words of memory out of 5000000
+ 22775 multiletter control sequences out of 15000+600000
  150925 words of font info for 277 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  60i,11n,94p,1299b,1200s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1222,10 +1233,10 @@ pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLiberti
 neTB.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLi
 bertineTI.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rt
 xr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on paper.pdf (2 pages, 435018 bytes).
+Output written on paper.pdf (2 pages, 459995 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 92 compressed objects within 1 object stream
- 25 named destinations out of 1000 (max. 500000)
- 39508 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
+ 26 named destinations out of 1000 (max. 500000)
+ 39513 words of extra memory for PDF output out of 42996 (max. 10000000)
 
