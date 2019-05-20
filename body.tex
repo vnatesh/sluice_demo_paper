@@ -16,8 +16,21 @@ In the Sluice model, a network-wide program consists of high-level code \textit{
  
 \subsection{Traffic Matrix}
 
-\noindent Figure 2 displays the Mininet network topology and simulation components. Packets flow over UDP between virtual hosts, through a network of virtual programmable switches. Figure 3  is a Sluice program with a single snippet 'traffic\_example' that is launched on all switches of the network. To run the simulation, the user passes the Sluice program and network topology to the compiler. The compiler generates P4 code to run on each switch as well as control plane table entries for routing packets through the topology.  \\
-\indent This demo shows how a simple Sluice program can be used to program each switch to measure link usage and hop counts for a specific flow of user-defined packets on UDP srcPort 1234. Each packet 'p' contains a custom header 'nhops' that will be used by the host to maintain a time-series of hop counts. Specifically, nhops is incremented each time the packet enters a switch, i.e. on each hop. Each switch maintains a stateful register counter 'cnt', indexed by switch ingress port, that tracks how many packets, on the particular UDP flow 1234, have entered through that ingress port. Aggregated over all switches, these counters data represent a matrix measuring each link's usage in the network. This matrix (residing on the whole network) is then queried regularly from the control plane to generate time-series plots of link-utilization and queue depth.  
+\noindent Figure 2 displays the Mininet network topology and simulation components. Packets are sent over UDP from each host to all other hosts according to a poisson traffic model with mean inter-arrival time of 0.5 seconds. The codelet below is our Sluice program with a single snippet \textit{traffic\_example} that is launched on all switches of the network. To run the simulation, the user passes the Sluice program and network topology to the compiler. The compiler generates P4 code to run on each switch as well as control plane table entries for routing packets through the topology.  \\
+\begin{lstlisting}[language=Python, basicstyle=\scriptsize]
+import device psa;
+
+packet p: udp(srcPort:1234)
+  nhops : bit<32>;
+
+@ bmv2 : ;
+snippet traffic_example()
+  persistent cnt : bit<32>[10];
+  cnt[psa.ingress_port] = cnt[psa.ingress_port] + 1;
+  p.nhops = p.nhops + 1;
+\end{lstlisting}
+
+\indent This demo shows how a simple Sluice program can be used to enable each switch to measure link usage for a specific flow of user-defined packets on UDP srcPort 1234. Each packet \textit{p} contains a custom header \textit{nhops} that is incremented each time the packet enters a switch to inform the receiving host of the number of hops the packet took. Each switch maintains a stateful register counter \textit{cnt}, indexed by switch ingress port, that tracks how many packets have entered through that ingress port. Aggregated over all switches, these counters data represent a matrix measuring each link's usage in the network at a given time. This matrix (residing on the whole network) is then queried once every second from the control plane to generate time-series plots of link-utilization for each link. Figure 3 displays the histogram of packet rates on link s1-s3 after collecting data for 3 minutes. The expected distribution of packet rates \textit{poisson}($\mu = 2$ packets/sec) is also plotted to confirm the accuracy of the simulation.
 
 \begin{figure}[tp]
 \centering
@@ -29,11 +42,11 @@ In the Sluice model, a network-wide program consists of high-level code \textit{
 \begin{figure}[tp]
 \centering
 \includegraphics[width=80mm,scale=0.7]{figures/exp_obs_cdf}
-\caption{CDF of Packet Rate on link s1-s2}
+\caption{CDF of Packet Rate on link s1-s3}
 \end{figure}
   
 \subsection{Streaming Algorithms}
-This example demonstrates a simple join-filter operation between two streams. A stream is an unbounded table where a packet represents a tuple of data (\textit{ad\_id, impression\_time, click\_time}) enclosed in a custom header. The topology in Figure 4 describes the data flow and shows how an operator query runs on the switches of the network. Host 1 sends a stream of ad impressions while Host 2 sends a stream of ad clicks. The two streams are joined on the "ad\_id" field at s1 and filtered on the "ad\_id" field at s2 and the result is sent to h3. 
+This example demonstrates a simple join-filter operation between two streams. A stream is an unbounded table where a packet represents a tuple of data (\textit{ad\_id, impression\_time, click\_time}) enclosed in a custom header. The topology in Figure 4 describes the data flow and shows how an operator query runs on the switches of the network. Host 1 sends a stream of ad impressions while Host 2 sends a stream of ad clicks. The two streams are joined on the \textit{ad\_id} field at s1 and filtered on the \textit{ad\_id} field at s2 and the result is sent to h3. 
 
 \begin{figure}[tp]
 \centering
