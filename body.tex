@@ -120,15 +120,18 @@ packets/sec) is also plotted to confirm the accuracy of the Mininet emulation.
 \caption{Topology For Traffic Matrix Demo}
 \end{figure}
 
+ \vspace{-4mm}
 
 \begin{figure}[tp]
 \centering
 \includegraphics[width=80mm,scale=0.7]{figures/exp_obs_cdf}
 \caption{CDF of Packet Rate on link s1-s3}
 \end{figure}
-  \vspace{-4mm}
 
+ \vspace{1mm}
 \subsection{Stream processing}
+ \vspace{-1mm}
+
 This example demonstrates a simple join-filter operation between two streams of
 tuples. A stream is an unbounded table where a packet represents a tuple of
 data (\textit{ad\_id, impression\_time, click\_time}) enclosed in a custom
@@ -144,19 +147,19 @@ field at s2 and the result is sent to h3.
 \caption{Streaming example topology, data flow, and code placement on switches}
 \vspace{-5mm}
 \end{figure}
-\vspace{-5mm}
+\vspace{-3mm}
 
 
-%%\section{Future Work}
-%%\textbf{An optimizing Sluice compiler.} We envision using the dependency DAG to
-%%provide several automatic optimizations or code transformations. For example,
-%%it is possible that certain lines of code in a snippet cannot be run on the
-%%device annotated by the operator, e.g., programmable switching chips have
-%%limited support for floating point or complex string operations. Code
-%%containing such features must be moved to the control plane or an end host data
-%%plane while at the same time, preserving the original program semantics
-%%intended by the operator. Doing this automatically would free the Sluice
-%%programmer from reasoning about these semantics.
+%\section{Future Work}
+%\textbf{An optimizing Sluice compiler.} We envision using the dependency DAG to
+%provide several automatic optimizations or code transformations. For example,
+%it is possible that certain lines of code in a snippet cannot be run on the
+%device annotated by the operator, e.g., programmable switching chips have
+%limited support for floating point or complex string operations. Code
+%containing such features must be moved to the control plane or an end host data
+%plane while at the same time, preserving the original program semantics
+%intended by the operator. Doing this automatically would free the Sluice
+%programmer from reasoning about these semantics.
 %%
 %%\textbf{Supporting multi-tenancy.} Another area of future work is allowing
 %%Sluice \rn{would this really be a change to Sluice? Or would this be using
@@ -168,3 +171,7 @@ field at s2 and the result is sent to h3.
 %%Sluice to support this multi-tenancy use case would allow us to provide the
 %%same benefits to the data plane that multi-tenant network
 %%virtualization~\cite{nvp} provided for the control plane.
+
+
+
+
