@@ -5,44 +5,46 @@ cards (NICs). Along with the rise of x86-based packet processing for
 middleboxes and virtual switches, these trends point towards a future where the
 entire network will be programmable. The benefits of network programmability
 range from commercial use cases such as network virtualization implemented on
-the programmable Open vSwitch platform to more recent projects that implement
-packet scheduling, measurement, and application offload of niche applications
-on programmable switches.
+the programmable Open vSwitch platform to more recent research projects that
+implement packet scheduling, measurement, and application offload of niche
+applications on programmable switches.
 
-Benefits are clear, but are difficult to reap as
-programming network as a whole remains challenging. Current programming languages target individual
-network devices, e.g., P4 for the Tofino programmable switching chip and the
-Netronome programmable NIC. However, at present, there is no unified
-programming model to express and implement general functionality at the level
-of an entire network, without having to individually program each network
-device.
+While the benefits of programmability are clear, they are difficult to reap
+because programming the network as a whole remains challenging. Current
+programming languages target individual network devices, e.g., P4 for the
+Tofino programmable switching chip and the Netronome programmable NIC. However,
+at present, there is no unified programming model to express and implement
+general data plane functionality at the level of an entire network, without
+having to individually program each network device.
 
-Maple was an early example of a network-wide programming model designed
-for OpenFlow switches. Maple automatically divided functionality between a
-stateless component running on switches and a stateful component running on the
-network's controller. SNAP is a more recent example of network-wide
-programming; unlike Maple, it additionally offloads stateful functionality to
-switches by leveraging stateful processing available in programmable switches. However, both Maple
-and SNAP cannot express programmable-switch functionality that affects network
-performance at fine time scales \rn{is there a short `why' for this?}, e.g.,
-packet scheduling, congestion control, fine-grained measurement of microbursts,
-and load balancing. In other words, Maple and SNAP generate highly optimized
-code, but are restricted in what they can express.
+Prior work has looked at the problem of programming at the level of an entire
+network. In particular, Maple~\cite{maple} was an early example of a
+network-wide programming model designed for OpenFlow switches. Maple
+automatically divided functionality between a stateless component running on
+switches and a stateful component running on the network's controller.
+SNAP~\cite{snap} is a more recent example of network-wide programming; unlike
+Maple, it additionally offloads stateful functionality to switches by
+leveraging stateful processing available in programmable switches.  However,
+both Maple and SNAP cannot express programmable-switch functionality that
+affects network performance at fine time scales, e.g., packet scheduling,
+congestion control, fine-grained measurement of microbursts, and load
+balancing. In other words, Maple and SNAP generate highly optimized code, but
+are restricted in what they can express.
 
-This demo presents \textbf{Sluice}, a programming model that takes a high-level
-specification of a network program and compiles it into runnable code that can
-be launched directly on the programmable devices of a network. In contrast to
-prior network-wide programming models like SNAP and Maple, Sluice aims to be
-more general \rn{should directly contrast with Maple/SNAP being
-coarse-grained}, but potentially at the cost of quality of generated code.
+This demo presents \textbf{Sluice}, a programming model that takes a
+network-wide specification of the data plane and compiles it into runnable code
+that can be launched directly on the programmable devices of a network. In
+contrast to prior network-wide programming models like SNAP and Maple that were
+focused on specific tasks (e.g., routing and security policies), Sluice aims to
+be more general, but potentially at the cost of quality of generated code.
 Sluice endows network operators with the ability to design and deploy large
 network programs for various functions such as scheduling, measurement, and
 application offloading.  The benefits of Sluice can be summarized as follows:\\
-\indent - Sluice provides the same functionality as P4 but makes it easier to
-program the data plane of an entire network. \\
+\indent - Sluice provides the same functionality as a per-device language like
+P4 but makes it easier to program the data plane of an entire network. \\
 \indent - Sluice automatically reduces the amount of boilerplate code needed to
-write an equivalent program in P4. For instance, the 9 line traffic matrix
-sluice program translates into over 200 lines of P4 code.
+write data plane functionality. For instance, the 9 line traffic matrix Sluice
+program we demonstrate translates into over 200 lines of P4 code.
 
 We demonstrate Sluice's functionality and ease of use
 via two examples: traffic matrix generation for network analysis and a
@@ -63,25 +65,22 @@ corresponding device. Snippets support a variety of operations:
 read-from/write-to packets; arithmetic using packet data, local variables, or
 stateful register arrays; and control flow statements. To handle computation on
 custom packet headers not supported by default (ip/tcp/udp/eth), users may
-define packet declarations similar to C structs. An optional annotation in the
-declaration, the parser condition, automatically generates a header parser.
-This lets the user restrict snippets to operate on specific flows or IP address
-ranges. Sluice programs may also import device-specific variables/attributes
-for use in code snippets.
+define packet header declarations similar to C structs. An optional annotation
+in the declaration, the parser condition, automatically generates a header
+parser for these user-defined headers. Sluice programs may also import
+device-specific variables/attributes for use in code snippets.
+%%This lets the user restrict snippets to
+%%operate on specific flows or IP address ranges.
 
 Figure 1 describes the Sluice workflow. The compiler translates each snippet of
-a sluice program into a device-specific program. After initial parsing, lines of code in
-the snippet are decomposed into a directed acyclic graph (DAG) that maps
-dependencies between variables in each snippet \rn{I'm confused. Isn't each
-node a snippet? Or are you breaking a snippet into smaller components?}. This
-graph is then passed to the backend of the compiler that generates the
-corresponding P4 program for that device, for example bmv2 or
-Tofino.\footnote{Currently we only support bmv2 but plan to support more
-devices.} 
+a sluice program into a device-specific program. After initial parsing, lines
+of code in the snippet are decomposed into a directed acyclic graph (DAG) that
+maps dependencies between variables in each snippet. This graph is then passed
+to the backend of the compiler that generates the corresponding P4 program for
+that device, for example bmv2 or Tofino.\footnote{Currently we only support
+bmv2 but plan to support more devices.} 
 
 %Example of citation here\cite{floyd1993random, stoica2001chord}
-
-
 
 \section{Demonstrations}
  
@@ -89,7 +88,7 @@ devices.}
 
 Figure 2 displays the Mininet network topology for our traffic matrix demo.
 Packets are sent over UDP from each host to all other hosts according to a
-poisson traffic model with mean inter-arrival time of 0.5 seconds. The codelet
+Poisson traffic model with mean inter-arrival time of 0.5 seconds. The codelet
 below is our Sluice program with a single snippet \textit{traffic\_example}
 that is launched on all switches of the network. To run the simulation, the
 user passes the Sluice program and network topology to the compiler. The
@@ -156,26 +155,26 @@ field at s2 and the result is sent to h3.
 \vspace{-5mm}
 
 
-\section{Future Work}
-\textbf{An optimizing Sluice compiler.} We envision using the dependency DAG to
-provide several automatic optimizations or code transformations. For example,
-it is possible that certain lines of code in a snippet cannot be run on the
-device annotated by the operator, e.g., programmable switching chips have
-limited support for floating point or complex string operations. Code
-containing such features must be moved to the control plane or an end host data
-plane while at the same time, preserving the original program semantics
-intended by the operator. Doing this automatically would free the Sluice
-programmer from reasoning about these semantics.
-
-\textbf{Supporting multi-tenancy.} Another area of future work is allowing
-Sluice \rn{would this really be a change to Sluice? Or would this be using
-Sluice to do something else?} to support multiple tenants with their own Sluice
-programs running on their own virtual networks overlayed on the same physical
-topology. If each tenant wants to run their own network-wide program on their
-virtual topology, the network operator will need to merge all these into one
-data plane implementation that runs on the entire physical network. Extending
-Sluice to support this multi-tenancy use case would allow us to provide the
-same benefits to the data plane that multi-tenant network
-virtualization~\cite{nvp} provided for the control plane.
+%%\section{Future Work}
+%%\textbf{An optimizing Sluice compiler.} We envision using the dependency DAG to
+%%provide several automatic optimizations or code transformations. For example,
+%%it is possible that certain lines of code in a snippet cannot be run on the
+%%device annotated by the operator, e.g., programmable switching chips have
+%%limited support for floating point or complex string operations. Code
+%%containing such features must be moved to the control plane or an end host data
+%%plane while at the same time, preserving the original program semantics
+%%intended by the operator. Doing this automatically would free the Sluice
+%%programmer from reasoning about these semantics.
+%%
+%%\textbf{Supporting multi-tenancy.} Another area of future work is allowing
+%%Sluice \rn{would this really be a change to Sluice? Or would this be using
+%%Sluice to do something else?} to support multiple tenants with their own Sluice
+%%programs running on their own virtual networks overlayed on the same physical
+%%topology. If each tenant wants to run their own network-wide program on their
+%%virtual topology, the network operator will need to merge all these into one
+%%data plane implementation that runs on the entire physical network. Extending
+%%Sluice to support this multi-tenancy use case would allow us to provide the
+%%same benefits to the data plane that multi-tenant network
+%%virtualization~\cite{nvp} provided for the control plane.
 
 \section{References}
