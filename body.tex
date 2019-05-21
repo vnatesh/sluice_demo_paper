@@ -39,7 +39,7 @@ focused on specific tasks (e.g., routing and security policies), Sluice aims to
 be more general, but potentially at the cost of quality of generated code.
 Sluice endows network operators with the ability to design and deploy large
 network programs for various functions such as scheduling, measurement, and
-application offloading.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network, and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 9 line traffic matrix Sluice program we demonstrate translates into over 200 lines of P4 code. We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
+application offloading.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 9 line traffic matrix Sluice program we demonstrate translates into over 200 lines of P4 code. We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
 \begin{figure}[tp]
 \centering
 \includegraphics[width=80mm,scale=0.7]{figures/sluice_workflow.pdf}
