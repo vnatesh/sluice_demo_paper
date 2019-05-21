@@ -1,5 +1,5 @@
  1) Need to highlight that Sluice code reduction comes from abstraction of the internal switch architecture details like registers,
  pipelines, etc., thus making it straight-forward to program and deploy applications.
  
- 2) 
+ 2) Need to highlight the future research aspects if space permits.
  
