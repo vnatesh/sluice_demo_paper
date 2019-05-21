@@ -64,7 +64,7 @@ network. The code in each snippet is to be executed on packets arriving at its
 corresponding device. Snippets support a variety of operations:
 read-from/write-to packets; arithmetic using packet data, local variables, or
 stateful register arrays; and control flow statements. To handle computation on
-custom packet headers not supported by default (ip/tcp/udp/eth), users may
+custom packet headers not supported by default (eth/ip/tcp/udp), users may
 define packet header declarations similar to C structs. An optional annotation
 in the declaration, the parser condition, automatically generates a header
 parser for these user-defined headers. Sluice programs may also import
