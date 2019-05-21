@@ -68,9 +68,9 @@ custom packet headers not supported by default (ip/tcp/udp/eth), users may
 define packet header declarations similar to C structs. An optional annotation
 in the declaration, the parser condition, automatically generates a header
 parser for these user-defined headers. Sluice programs may also import
-device-specific variables/attributes for use in code snippets.
-%%This lets the user restrict snippets to
-%%operate on specific flows or IP address ranges.
+device-specific variables/attributes for use in code snippets. Sluice also lets
+the programmer restrict snippets to operate on specific flows or IP address
+ranges.
 
 Figure 1 describes the Sluice workflow. The compiler translates each snippet of
 a sluice program into a device-specific program. After initial parsing, lines
