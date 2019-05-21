@@ -1,0 +1,70 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+\usepackage{listings}
+
+\newcommand{\rn}[1] {{\textcolor{blue}{RN: {#1}}}}
+
+% Copyright
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference info
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+\settopmatter{printacmref=false, printccs=false, printfolios=true}
+
+% DOI
+\acmDOI{}
+
+% ISBN
+\acmISBN{}
+
+%Conference
+%\acmConference[Submitted for review to SIGCOMM]{}
+%\acmYear{2018}
+%\copyrightyear{}
+
+%% {} with no args suppresses printing of the price
+\acmPrice{}
+
+
+\begin{document}
+\title{	Sluice: A Network-Wide Model for Programmable Networks}
+
+%\titlenote{Produces the permission block, and copyright information}
+%\subtitle{Extended Abstract}
+
+\author{Vikas Natesh$^{ 1}$ \space \space    Pravein Govindan Kannan$^{ 2}$  \space \space Anirudh Sivaraman$^{ 1}$  \space \space Ravi Netravali$^{ 3}$}
+% \authornote{Note}
+\orcid{1234-5678-9012}
+\affiliation{
+   \institution{$^{ 1}$New York University  \quad \quad \quad $^{ 2}$National University of Singapore  \quad \quad \quad $^{ 3}$University of California, Los Angeles}
+%   \streetaddress{Address}
+%   \city{City} 
+%   \state{State} 
+%   \postcode{Zipcode}
+ }
+% \email{email@domain.com}
+
+% The default list of authors is too long for headers}
+\renewcommand{\shortauthors}{V. Natesh. et al.}
+
+%\begin{abstract}
+  %  \blindtext
+%\end{abstract}
+
+\maketitle
+
+\input{body}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{reference}
+
+\end{document}
