@@ -1184,7 +1184,7 @@ Computing Machinery]
   \global\@ACM@journal@bibstripfalse
 }
 \if@ACM@journal\else
-\acmConference[Conference'17]{ACM Conference}{July 2017}{Washington,
+\acmConference[SIGCOMM'19]{ACM Conference}{August 19-24, 2019}{Beijing, China}
   DC, USA}%
 \fi
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
