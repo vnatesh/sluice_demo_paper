@@ -25,10 +25,9 @@ switches and a stateful component running on the network's controller. However,
 this creates overhead as packets requiring stateful processing
 must be forwarded to the controller. SNAP~\cite{snap} is a more recent example of network-wide programming; unlike
 Maple, it additionally offloads stateful functionality to switches by
-leveraging stateful processing available in programmable switches. Stateful code placement across switches is hidden from the operator who only sees one-big-switch (OBS) of persistent arrays. 
-The OBS abstraction is good at expressing network-wide policies that do not require explicit device control, for example, DNS tunnel detection in a LAN. However, manually keeping track of and programming each device is necessary to accurately control all aspects of network monitoring and performance. For instance, an operator may want to run active queue management (AQM), ECN, and DCTCP on particular switches. This is difficult to express in SNAP as it may automatically place the code on unintended devices. In addition, there is no way to express queue-based measurement, for instance, tracking an EWMA of queueing latencies on a particular switch. Maple and SNAP cannot express programmable-switch functionality that
+leveraging stateful processing available in programmable switches while providing the operator with a view of one-big-switch (OBS) of persistent arrays. This abstraction is good at expressing network-wide policies that do not require explicit device control, e.g., DNS tunnel detection in a LAN. However, manually programming each device is necessary to accurately control all aspects of network performance. For instance, an operator may want to run active queue management (AQM), ECN, and DCTCP on particular switches. This is difficult to express in SNAP as it may automatically place the code on unintended devices. There is also no way to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. Maple and SNAP cannot express programmable-switch functionality that
 affects network performance at fine time scales, e.g., packet scheduling,
-congestion control, fine-grained measurement of microbursts, and load
+congestion control, and load
 balancing. In other words, Maple and SNAP generate highly optimized code, but
 are restricted in what they can express.
 
@@ -40,12 +39,12 @@ focused on specific tasks (e.g., routing and security policies), Sluice aims to
 be more general, but potentially at the cost of operator time.
 Sluice endows network operators with the ability to design and deploy large
 network programs for various functions such as scheduling, measurement, and
-application offloading.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 8 line traffic matrix Sluice program we demonstrate translates into over 40 lines of P4 code (excluding header/parser definitions and IP routing P4 code). We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
+application offloading.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 8 line traffic matrix Sluice program we demonstrate translates into over 40 lines of P4 (excluding header/metadata/parser definitions and ipv4 forwarding P4 code). We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
 \begin{figure}[tp]
 \centering
 \includegraphics[width=84mm,scale=0.7]{figures/sluice_workflow.pdf}
 \caption{Sluice Workflow}
-\vspace{-8mm}
+\vspace{-10mm}
 \end{figure}
 \vspace{-4mm}
 
@@ -154,11 +153,8 @@ field at s2 and the result is sent to h3.
 provide several automatic optimizations or code transformations. For example,
 it is possible that certain lines of code in a snippet cannot be run on the
 device annotated by the operator, e.g., programmable switching chips have
-limited support for floating point or complex string operations. Code
-containing such features must be moved to the control plane or an end host data
-plane while at the same time, preserving the original program semantics
-intended by the operator. Doing this automatically would free the Sluice
-programmer from reasoning about these semantics.
+limited support for floating point. or complex string operations. Code
+containing such features must be moved to the control plane or an end host while at the same time, preserving the original program semantics intended by the operator. Doing this automatically would free the Sluice programmer from reasoning about these semantics.
 
 \textbf{Supporting multi-tenancy.} Another area of future work is allowing
 Sluice to support multiple tenants with their own Sluice
@@ -168,8 +164,7 @@ virtual topology, the network operator will need to merge all these into one
 data plane implementation that runs on the entire physical network. Extending
 Sluice to support this multi-tenancy use case would allow us to provide the
 same benefits to the data plane that multi-tenant network
-virtualization~\cite{multitenant} provided for the control plane.
-
+virtualization~\cite{multitenant} provided for the control plane.\\\\\\
 
 
 
