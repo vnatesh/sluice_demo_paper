@@ -1185,7 +1185,6 @@ Computing Machinery]
 }
 \if@ACM@journal\else
 \acmConference[SIGCOMM'19]{ACM Conference}{August 19-24, 2019}{Beijing, China}
-  DC, USA}%
 \fi
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
 \acmBooktitle{Proceedings of \acmConference@name
