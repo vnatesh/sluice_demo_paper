@@ -68,9 +68,9 @@ that device, for example bmv2 or Tofino.\footnote{Currently we only support
 bmv2 but plan to support more devices.} 
 \vspace{-0.05in}
 \section{Demonstrations}
- 
+\vspace{-0.05in}
 \subsection{Traffic Matrix}
-
+\vspace{-0.03in}
 Mininet network topology in Figure~\ref{fig:tm} is used for our traffic matrix demo.
 Packets are sent over UDP from each host to all other hosts according to a
 Poisson traffic model with mean inter-arrival time of 0.5 seconds. The codelet
@@ -93,8 +93,7 @@ snippet traffic_example()
   p.nhops = p.nhops + 1;
 \end{lstlisting}
 \vspace{-0.05in}
-This demo shows how a simple Sluice program can be used to measure link usage for a specific UDP flow (srcport 1234) across the network.
-srcPort 1234. Each packet \textit{p} contains a custom header \textit{nhops}
+This demo shows how a simple Sluice program can be used to measure link usage for a specific UDP flow (srcport 1234) across the network. Each packet \textit{p} contains a custom header \textit{nhops}
 that is incremented each time the packet enters a switch to inform the
 receiving host of the number of hops the packet took. Each switch maintains a
 stateful register counter \textit{cnt}, indexed by switch ingress port, that
@@ -107,17 +106,18 @@ packets/sec) is also plotted to validate Sluice translation.
 \begin{figure}[tp]
 \centering
 \includegraphics[width=40mm,scale=0.7]{figures/traf_mat_topo}
+\vspace{-0.15in}
 \caption{Topology For Traffic Matrix Demo}
 \label{fig:tm}
-\vspace{-0.2in}
+\vspace{-0.15in}
 \end{figure}
-
 
 \begin{figure}[tp]
 \centering
 \includegraphics[width=84mm,scale=0.7]{figures/exp_obs_cdf}
 \vspace{-0.15in}
 \caption{CDF of Packet Rate on link s1-s3}
+\vspace{-0.25in}
 \end{figure}
 
 \vspace{-0.1in}
