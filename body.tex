@@ -5,8 +5,8 @@ including both programmable switching chips and programmable network interface
 cards (NICs). Along with the rise of x86-based packet processing for
 middleboxes and virtual switches, these trends point towards a future where the
 entire network will be programmable. The benefits of network programmability
-range from commercial use cases such as network virtualization implemented on
-the Open vSwitch platform to recent research works that
+range from commercial use cases such as network virtualization~\cite{multitenant} implemented on
+the Open vSwitch platform~\cite{openvswitch} to recent research works that
 implement packet scheduling~\cite{pifo}, measurement~\cite{marple}, and application offload of niche
 applications on programmable switches~\cite{netcache, netchain}.
 
@@ -29,7 +29,7 @@ Maple, it offloads stateful functionality to switches by
 leveraging stateful processing available in programmable switches while providing the operator with a view of one-big-switch (OBS) of persistent arrays. 
 This abstraction is good at expressing network-wide policies that do not require explicit placement of packet processing code on particular devices, e.g., DNS tunnel detection in a LAN. 
 %However, manually programming each device is necessary to accurately control all aspects of network performance. For instance, an operator may want to run active queue management (AQM), ECN, and DCTCP on particular switches. This is difficult to express in SNAP as it may automatically place the code on unintended devices. There is also no way to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. 
-However, to develop applications that do require such specific placement, a more fine-grained programming model is necessary. For instance, an operator may wish to run active queue management (AQM), ECN, and DCTCP on specific switches, but not all. This is hard to achieve using SNAP. Further, SNAP does not provide abstractions to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. %Also, it does not give the control to programmer to specify device-specific intentions.
+However, to develop applications that do require such specific placement, a more fine-grained programming model is necessary. For instance, an operator may wish to run active queue management (AQM), ECN, and DCTCP~\cite{dctcp} on specific switches, but not all. This is hard to achieve using SNAP. Further, SNAP does not provide abstractions to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. %Also, it does not give the control to programmer to specify device-specific intentions.
 To summarize, Maple and SNAP cannot express programmable switch functionality where the network operator requires specific placement of code on specific devices, e.g., packet scheduling, congestion control, and load balancing. %In other words, Maple and SNAP generate highly optimized code, but are restricted in what they can express.
 
 This demo presents \textbf{Sluice}, a programming model that takes a
@@ -44,17 +44,17 @@ network programs for various functions such as scheduling, measurement, and in-n
 \centering
 \includegraphics[width=84mm,scale=0.7]{figures/sluice_workflow}
 \caption{Sluice Workflow}
-\vspace{-10mm}
+\vspace{-6mm}
 \end{figure}
-\vspace{-4mm}
+\vspace{-2mm}
 
-\section{Sluice Design}
+\section{Sluice Design} \label{design}
 In the Sluice model, a network-wide program consists of high-level code
 \textit{snippets} annotated by the operator to run on particular devices in a
 network. The code in each snippet is to be executed on packets arriving at its corresponding device. Snippets support a variety of operations:
 read-from/write-to packets; arithmetic using packet/meta data, local variables, or
 stateful register arrays; and control flow statements. To handle custom packet headers not supported by default (Ethernet/IP/UDP/TCP), users may
-define packet header declarations similar to C structs. An optional annotation in the packet declaration defines the parser condition for these user-defined headers. Sluice programs may also import
+define packet header declarations similar to C structs. An optional annotation in the packet declaration defines the parser condition for these user-defined headers (for example, see packet p in Figure 4). Sluice programs may also import
 device-specific variables/attributes for use in code snippets. Sluice also lets
 the programmer restrict snippets to operate on specific flows or IP address
 ranges.
@@ -64,18 +64,18 @@ a sluice program into a device-specific program. After initial parsing, lines
 of code in the snippet are decomposed into a directed acyclic graph (DAG) that
 maps dependencies between variables in each snippet. This graph is then passed
 to the backend of the compiler that generates the corresponding P4 program for
-that device, for example the P4 Behavioral Model~\cite{bmv2} or Tofino~\cite{tofino}.\footnote{Currently we only support
-bmv2 but plan to support more devices.} 
-\vspace{-0.05in}
+that device, e.g., the P4 Behavioral Model~\cite{bmv2} or Tofino~\cite{tofino}.\footnote{Currently we only support
+the P4 Behavioral Model} 
+\vspace{-0.12in}
 \section{Demonstrations}
 \vspace{-0.05in}
 \subsection{Traffic Matrix}
 \vspace{-0.03in}
-Mininet network topology in Figure~\ref{fig:tm} is used for our traffic matrix demo.
+Figure 2 displays the Mininet~\cite{mininet} network topology in Figure~\ref{fig:tm} is used for our traffic matrix demo.
 Packets are sent over UDP from each host to all other hosts according to a
-Poisson traffic model with mean inter-arrival time of 0.5 seconds. The codelet
+Poisson traffic model with mean inter-arrival time of 0.5 seconds. The code
 below is our Sluice program with a single snippet \textit{traffic\_example}
-that is launched on all switches of the network. To run the simulation, the
+that is launched on all switches of the network. To run the Mininet emulation, the
 user passes the Sluice program and network topology to the compiler. The
 compiler generates P4 code to run on each switch as well as control plane table entries for routing packets through the topology.
 \vspace{-0.05in}
@@ -96,12 +96,12 @@ snippet traffic_example()
 This demo shows how a simple Sluice program can be used to measure link usage for a specific UDP flow (srcport 1234) across the network. Each packet \textit{p} contains a custom header \textit{nhops}
 that is incremented each time the packet enters a switch to inform the
 receiving host of the number of hops the packet took. Each switch maintains a
-stateful register counter \textit{cnt}, indexed by switch ingress port, that
+stateful register counter \textit{cnt}, indexed by the switch ingress port, that
 tracks how many packets have entered through that ingress port. Aggregated over all switches, these counters represent a matrix measuring each link's
 usage in the network at a given time. This matrix (residing on the whole
 network) is then queried once every second from the control plane to generate
-time-series plots of link-utilization for each link. Figure 3 displays the cumulative histogram of packet rates on link s1-s3 after collecting data for 15 minutes. The expected CDF of packet rates \textit{Poisson}($\mu = 2$
-packets/sec) is also plotted to validate Sluice translation.
+time-series plots of packet rate for each link. Figure 3 displays the cumulative histogram of packet rates on link s1-s3 after collecting data for 15 minutes. The expected CDF of packet rates \textit{Poisson}($\mu = 2$
+packets/sec) is also plotted to validate the Sluice translation.
 
 \begin{figure}[tp]
 \centering
@@ -141,7 +141,7 @@ field at s2 and the result is sent to h3.
 
 
 \section{Future Work}
-\textbf{An optimizing Sluice compiler.} We envision using the dependency DAG to
+\textbf{An optimizing Sluice compiler.} We envision using the dependency DAG, as described in \ref{design} to
 provide several automatic optimizations or code transformations. For example,
 it is possible that certain lines of code in a snippet cannot be run on the
 device annotated by the operator, e.g., programmable switching chips have
@@ -156,7 +156,7 @@ virtual topology, the network operator will need to merge all these into one
 data plane implementation that runs on the entire physical network. Extending
 Sluice to support this multi-tenancy use case would allow us to provide the
 same benefits to the data plane that multi-tenant network
-virtualization~\cite{multitenant} provided for the control plane.\\\\\\\\\\\\
+virtualization~\cite{multitenant} provided for the control plane.\\\\\\
 
 
 
