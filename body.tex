@@ -71,7 +71,17 @@ the P4 Behavioral Model}
 \vspace{-0.05in}
 \subsection{Traffic Matrix}
 \vspace{-0.03in}
-Figure 2 displays the Mininet~\cite{mininet} network topology in Figure~\ref{fig:tm} is used for our traffic matrix demo.
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=40mm,scale=0.7]{figures/traf_mat_topo}
+\vspace{-0.15in}
+\caption{Topology For Traffic Matrix Demo}
+\label{fig:tm}
+\vspace{-0.15in}
+\end{figure}
+
+Figure 2 displays the Mininet~\cite{mininet} network topology used for our traffic matrix demo.
 Packets are sent over UDP from each host to all other hosts according to a
 Poisson traffic model with mean inter-arrival time of 0.5 seconds. The code
 below is our Sluice program with a single snippet \textit{traffic\_example}
@@ -102,15 +112,6 @@ usage in the network at a given time. This matrix (residing on the whole
 network) is then queried once every second from the control plane to generate
 time-series plots of packet rate for each link. Figure 3 displays the cumulative histogram of packet rates on link s1-s3 after collecting data for 15 minutes. The expected CDF of packet rates \textit{Poisson}($\mu = 2$
 packets/sec) is also plotted to validate the Sluice translation.
-
-\begin{figure}[tp]
-\centering
-\includegraphics[width=40mm,scale=0.7]{figures/traf_mat_topo}
-\vspace{-0.15in}
-\caption{Topology For Traffic Matrix Demo}
-\label{fig:tm}
-\vspace{-0.15in}
-\end{figure}
 
 \begin{figure}[tp]
 \centering
