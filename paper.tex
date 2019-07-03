@@ -7,17 +7,8 @@
 
 \newcommand{\rn}[1] {{\textcolor{blue}{RN: {#1}}}}
 
-\settopmatter{printacmref=false, printccs=false, printfolios=true}
-
-% DOI
-\acmDOI{}
-
-% ISBN
-\acmISBN{}
-
-
-%% {} with no args suppresses printing of the price
-\acmPrice{}
+%\settopmatter{printacmref=false, printccs=false, printfolios=true}
+\settopmatter{printacmref=false, printccs=true, printfolios=false}
 
 % copyright
 \setcopyright{acmlicensed}
@@ -25,6 +16,8 @@
 
 
 \begin{document}
+
+
 %Conference
 \copyrightyear{2019} 
 \acmYear{2019} 
@@ -58,6 +51,48 @@
 %\begin{abstract}
   %  \blindtext
 %\end{abstract}
+
+
+% ACM computing classification format
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10003033.10003034.10003038</concept_id>
+<concept_desc>Networks~Programming interfaces</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Networks~Programming interfaces}
+
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10003033.10003099.10003102</concept_id>
+<concept_desc>Networks~Programmable networks</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Networks~Programmable networks}
+
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10003033.10003099.10003104</concept_id>
+<concept_desc>Networks~Network management</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Networks~Network management}
+
+
 
 \maketitle
 
