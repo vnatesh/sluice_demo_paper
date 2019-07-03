@@ -7,13 +7,13 @@ middleboxes and virtual switches, these trends point towards a future where the
 entire network will be programmable. The benefits of network programmability
 range from commercial use cases such as network virtualization implemented on
 the Open vSwitch platform to recent research works that
-implement packet scheduling, measurement, and application offload of niche
-applications on programmable switches.
+implement packet scheduling~\cite{pifo}, measurement~\cite{marple}, and application offload of niche
+applications on programmable switches~\cite{netcache, netchain, }.
 
 While the benefits of programmability are clear, they are difficult to reap
 because programming the network as a whole remains a challenge. Current
 programming languages target individual network devices, e.g., P4 for the
-Tofino programmable switching chip and the Netronome smartNIC. However,
+Tofino~\cite{tofino} programmable switching chip and the Netronome SmartNIC~\cite{netronome}. However,
 at present, there is no unified programming model to express and implement
 general data plane functionality at the level of an entire network, without
 having to individually program each network device.
@@ -27,22 +27,22 @@ this creates overhead as packets requiring stateful processing
 must be forwarded to the controller. SNAP~\cite{snap} is a more recent example of network-wide programming; unlike
 Maple, it offloads stateful functionality to switches by
 leveraging stateful processing available in programmable switches while providing the operator with a view of one-big-switch (OBS) of persistent arrays. 
-This abstraction is good at expressing network-wide policies that do not require explicit device control, e.g., DNS tunnel detection in a LAN. 
+This abstraction is good at expressing network-wide policies that do not require explicit placement of packet processing code on particular devices, e.g., DNS tunnel detection in a LAN. 
 %However, manually programming each device is necessary to accurately control all aspects of network performance. For instance, an operator may want to run active queue management (AQM), ECN, and DCTCP on particular switches. This is difficult to express in SNAP as it may automatically place the code on unintended devices. There is also no way to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. 
-However, to develop applications that require precise network performance or storage control, fine-grained programming is still necessary. For instance, an operator may wish to run active queue management (AQM), ECN, and DCTCP on specific switches. SNAP does not provide abstractions to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. %Also, it does not give the control to programmer to specify device-specific intentions.
-To summarize, Maple and SNAP cannot express programmable switch functionalities that affects network performance at fine time scales, e.g., packet scheduling, congestion control, and load balancing. %In other words, Maple and SNAP generate highly optimized code, but are restricted in what they can express.
+However, to develop applications that do require such specific placement, a more fine-grained programming model is necessary. For instance, an operator may wish to run active queue management (AQM), ECN, and DCTCP on specific switches, but not all. This is hard to achieve using SNAP. Further, SNAP does not provide abstractions to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. %Also, it does not give the control to programmer to specify device-specific intentions.
+To summarize, Maple and SNAP cannot express programmable switch functionality where the network operator requires specific placement of code on specific devices, e.g., packet scheduling, congestion control, and load balancing. %In other words, Maple and SNAP generate highly optimized code, but are restricted in what they can express.
 
 This demo presents \textbf{Sluice}, a programming model that takes a
 network-wide specification of the data plane and compiles it into runnable code
 that can be launched directly on the programmable devices of a network. In
 contrast to prior network-wide programming models like SNAP and Maple that were
 focused on specific tasks (e.g., routing and security policies), Sluice aims to
-be generic, but potentially at the cost of operator time.
+be more generic, but potentially at the cost of operator effort in specifying code placement.
 Sluice endows network operators with the ability to design and deploy large
-network programs for various functions such as scheduling, measurement, and in-network applications.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 8 line traffic matrix Sluice program we demonstrate translates into over 40 lines of P4 (excluding header/metadata/parser definitions and ipv4 forwarding P4 code). We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
+network programs for various functions such as scheduling, measurement, and in-network applications.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 8 line traffic matrix Sluice program we demonstrate translates into over 40 lines of P4 (excluding header/metadata/parser definitions and ipv4 forwarding P4 code). We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation. Sluice is open-source and available at https://github.com/sluice-project/sluice.
 \begin{figure}[tp]
 \centering
-\includegraphics[width=84mm,scale=0.7]{figures/sluice_workflow.pdf}
+\includegraphics[width=84mm,scale=0.7]{figures/sluice_workflow}
 \caption{Sluice Workflow}
 \vspace{-10mm}
 \end{figure}
@@ -53,7 +53,7 @@ In the Sluice model, a network-wide program consists of high-level code
 \textit{snippets} annotated by the operator to run on particular devices in a
 network. The code in each snippet is to be executed on packets arriving at its corresponding device. Snippets support a variety of operations:
 read-from/write-to packets; arithmetic using packet/meta data, local variables, or
-stateful register arrays; and control flow statements. To handle custom packet headers not supported by default (eth/ip/tcp/udp), users may
+stateful register arrays; and control flow statements. To handle custom packet headers not supported by default (Ethernet/IP/UDP/TCP), users may
 define packet header declarations similar to C structs. An optional annotation in the packet declaration defines the parser condition for these user-defined headers. Sluice programs may also import
 device-specific variables/attributes for use in code snippets. Sluice also lets
 the programmer restrict snippets to operate on specific flows or IP address
@@ -64,7 +64,7 @@ a sluice program into a device-specific program. After initial parsing, lines
 of code in the snippet are decomposed into a directed acyclic graph (DAG) that
 maps dependencies between variables in each snippet. This graph is then passed
 to the backend of the compiler that generates the corresponding P4 program for
-that device, for example bmv2 or Tofino.\footnote{Currently we only support
+that device, for example the P4 Behavioral Model~\cite{bmv2} or Tofino~\cite{tofino}.\footnote{Currently we only support
 bmv2 but plan to support more devices.} 
 \vspace{-0.05in}
 \section{Demonstrations}
@@ -158,7 +158,7 @@ virtual topology, the network operator will need to merge all these into one
 data plane implementation that runs on the entire physical network. Extending
 Sluice to support this multi-tenancy use case would allow us to provide the
 same benefits to the data plane that multi-tenant network
-virtualization~\cite{multitenant} provided for the control plane.\\\\\\
+virtualization~\cite{multitenant} provided for the control plane.\\\\\\\\\\\\
 
 
 
