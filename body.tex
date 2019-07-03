@@ -1,3 +1,4 @@
+\vspace{-0.1in}
 \section{Introduction}
 The last several years have seen the emergence of programmable network devices
 including both programmable switching chips and programmable network interface
@@ -50,14 +51,10 @@ network programs for various functions such as scheduling, measurement, and in-n
 \section{Sluice Design}
 In the Sluice model, a network-wide program consists of high-level code
 \textit{snippets} annotated by the operator to run on particular devices in a
-network. The code in each snippet is to be executed on packets arriving at its
-corresponding device. Snippets support a variety of operations:
-read-from/write-to packets; arithmetic using packet data, local variables, or
-stateful register arrays; and control flow statements. To handle computation on
-custom packet headers not supported by default (eth/ip/tcp/udp), users may
-define packet header declarations similar to C structs. An optional annotation
-in the declaration, the parser condition, automatically generates a header
-parser for these user-defined headers. Sluice programs may also import
+network. The code in each snippet is to be executed on packets arriving at its corresponding device. Snippets support a variety of operations:
+read-from/write-to packets; arithmetic using packet/meta data, local variables, or
+stateful register arrays; and control flow statements. To handle custom packet headers not supported by default (eth/ip/tcp/udp), users may
+define packet header declarations similar to C structs. An optional annotation in the packet declaration defines the parser condition for these user-defined headers. Sluice programs may also import
 device-specific variables/attributes for use in code snippets. Sluice also lets
 the programmer restrict snippets to operate on specific flows or IP address
 ranges.
@@ -69,63 +66,61 @@ maps dependencies between variables in each snippet. This graph is then passed
 to the backend of the compiler that generates the corresponding P4 program for
 that device, for example bmv2 or Tofino.\footnote{Currently we only support
 bmv2 but plan to support more devices.} 
-
+\vspace{-0.05in}
 \section{Demonstrations}
  
 \subsection{Traffic Matrix}
 
-Figure 2 displays the Mininet network topology for our traffic matrix demo.
+Mininet network topology in Figure~\ref{fig:tm} is used for our traffic matrix demo.
 Packets are sent over UDP from each host to all other hosts according to a
 Poisson traffic model with mean inter-arrival time of 0.5 seconds. The codelet
 below is our Sluice program with a single snippet \textit{traffic\_example}
 that is launched on all switches of the network. To run the simulation, the
 user passes the Sluice program and network topology to the compiler. The
-compiler generates P4 code to run on each switch as well as control plane table
-entries for routing packets through the topology.
-
+compiler generates P4 code to run on each switch as well as control plane table entries for routing packets through the topology.
+\vspace{-0.05in}
 \begin{lstlisting}[language=Python, basicstyle=\scriptsize]
 import device psa;
-
 packet p: udp(srcPort:1234)
   nhops : bit<32>;
-
+\end{lstlisting}
+\vspace{-0.05in}
+\begin{lstlisting}[language=Python, basicstyle=\scriptsize]
 @ bmv2 : ;
 snippet traffic_example()
   persistent cnt : bit<32>[10];
   cnt[psa.ingress_port] = cnt[psa.ingress_port] + 1;
   p.nhops = p.nhops + 1;
 \end{lstlisting}
-
-This demo shows how a simple Sluice program can be used to enable each switch
-to measure link usage for a specific flow of user-defined packets on UDP
+\vspace{-0.05in}
+This demo shows how a simple Sluice program can be used to measure link usage for a specific UDP flow (srcport 1234) across the network.
 srcPort 1234. Each packet \textit{p} contains a custom header \textit{nhops}
 that is incremented each time the packet enters a switch to inform the
 receiving host of the number of hops the packet took. Each switch maintains a
 stateful register counter \textit{cnt}, indexed by switch ingress port, that
-tracks how many packets have entered through that ingress port. Aggregated over
-all switches, these counters represent a matrix measuring each link's
+tracks how many packets have entered through that ingress port. Aggregated over all switches, these counters represent a matrix measuring each link's
 usage in the network at a given time. This matrix (residing on the whole
 network) is then queried once every second from the control plane to generate
-time-series plots of link-utilization for each link. Figure 3 displays the cumulative
-histogram of packet rates on link s1-s3 after collecting data for 15 minutes.
-The expected CDF of packet rates \textit{Poisson}($\mu = 2$
-packets/sec) is also plotted to confirm the accuracy of the Mininet emulation.
+time-series plots of link-utilization for each link. Figure 3 displays the cumulative histogram of packet rates on link s1-s3 after collecting data for 15 minutes. The expected CDF of packet rates \textit{Poisson}($\mu = 2$
+packets/sec) is also plotted to validate Sluice translation.
 
 \begin{figure}[tp]
 \centering
 \includegraphics[width=40mm,scale=0.7]{figures/traf_mat_topo}
 \caption{Topology For Traffic Matrix Demo}
+\label{fig:tm}
+\vspace{-0.2in}
 \end{figure}
 
- \vspace{-4mm}
 
 \begin{figure}[tp]
 \centering
 \includegraphics[width=84mm,scale=0.7]{figures/exp_obs_cdf}
+\vspace{-0.15in}
 \caption{CDF of Packet Rate on link s1-s3}
 \end{figure}
 
- \vspace{1mm}
+\vspace{-0.1in}
 \subsection{Stream processing}
  \vspace{-1mm}
 
