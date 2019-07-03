@@ -12,34 +12,33 @@ applications on programmable switches.
 While the benefits of programmability are clear, they are difficult to reap
 because programming the network as a whole remains a challenge. Current
 programming languages target individual network devices, e.g., P4 for the
-Tofino programmable switching chip and the Netronome programmable NIC. However,
+Tofino programmable switching chip and the Netronome smartNIC. However,
 at present, there is no unified programming model to express and implement
 general data plane functionality at the level of an entire network, without
 having to individually program each network device.
 
-Prior work has looked at the problem of programming at the level of an entire
+Prior work has looked at programming an entire
 network. In particular, Maple~\cite{maple} was an early example of a
 network-wide programming model designed for OpenFlow switches. Maple
-automatically divided functionality between a stateless component running on
+automatically divides functionality between a stateless component running on
 switches and a stateful component running on the network's controller. However,
 this creates overhead as packets requiring stateful processing
 must be forwarded to the controller. SNAP~\cite{snap} is a more recent example of network-wide programming; unlike
-Maple, it additionally offloads stateful functionality to switches by
-leveraging stateful processing available in programmable switches while providing the operator with a view of one-big-switch (OBS) of persistent arrays. This abstraction is good at expressing network-wide policies that do not require explicit device control, e.g., DNS tunnel detection in a LAN. However, manually programming each device is necessary to accurately control all aspects of network performance. For instance, an operator may want to run active queue management (AQM), ECN, and DCTCP on particular switches. This is difficult to express in SNAP as it may automatically place the code on unintended devices. There is also no way to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. Maple and SNAP cannot express programmable-switch functionality that
-affects network performance at fine time scales, e.g., packet scheduling,
-congestion control, and load
-balancing. In other words, Maple and SNAP generate highly optimized code, but
-are restricted in what they can express.
+Maple, it offloads stateful functionality to switches by
+leveraging stateful processing available in programmable switches while providing the operator with a view of one-big-switch (OBS) of persistent arrays. 
+This abstraction is good at expressing network-wide policies that do not require explicit device control, e.g., DNS tunnel detection in a LAN. 
+%However, manually programming each device is necessary to accurately control all aspects of network performance. For instance, an operator may want to run active queue management (AQM), ECN, and DCTCP on particular switches. This is difficult to express in SNAP as it may automatically place the code on unintended devices. There is also no way to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. 
+However, to develop applications that require precise network performance or storage control, fine-grained programming is still necessary. For instance, an operator may wish to run active queue management (AQM), ECN, and DCTCP on specific switches. SNAP does not provide abstractions to express queue-based measurement e.g., tracking an EWMA of queueing latencies on a particular switch. %Also, it does not give the control to programmer to specify device-specific intentions.
+To summarize, Maple and SNAP cannot express programmable switch functionalities that affects network performance at fine time scales, e.g., packet scheduling, congestion control, and load balancing. %In other words, Maple and SNAP generate highly optimized code, but are restricted in what they can express.
 
 This demo presents \textbf{Sluice}, a programming model that takes a
 network-wide specification of the data plane and compiles it into runnable code
 that can be launched directly on the programmable devices of a network. In
 contrast to prior network-wide programming models like SNAP and Maple that were
 focused on specific tasks (e.g., routing and security policies), Sluice aims to
-be more general, but potentially at the cost of operator time.
+be generic, but potentially at the cost of operator time.
 Sluice endows network operators with the ability to design and deploy large
-network programs for various functions such as scheduling, measurement, and
-application offloading.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 8 line traffic matrix Sluice program we demonstrate translates into over 40 lines of P4 (excluding header/metadata/parser definitions and ipv4 forwarding P4 code). We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
+network programs for various functions such as scheduling, measurement, and in-network applications.  The benefits of Sluice can be summarized as follows: (1) Sluice provides the same functionality as a per-device language like P4 but makes it easier to program the data plane of an entire network by abstracting device-specific architectural details like stateful ALUs, pipelines, etc., and (2) Sluice automatically reduces the amount of boilerplate code needed to write data plane functionality. For instance, the 8 line traffic matrix Sluice program we demonstrate translates into over 40 lines of P4 (excluding header/metadata/parser definitions and ipv4 forwarding P4 code). We demonstrate Sluice's functionality and ease of use via two examples: traffic matrix generation for network analysis and a streaming join-filter operation.
 \begin{figure}[tp]
 \centering
 \includegraphics[width=84mm,scale=0.7]{figures/sluice_workflow.pdf}
