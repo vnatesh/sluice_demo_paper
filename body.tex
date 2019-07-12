@@ -1,5 +1,6 @@
 \vspace{-0.1in}
 \section{Introduction}
+\vspace{-1mm}
 The last several years have seen the emergence of programmable network devices
 including both programmable switching chips and programmable network interface
 cards (NICs). Along with the rise of x86-based packet processing for
@@ -78,7 +79,7 @@ the P4 Behavioral Model}
 \vspace{-0.15in}
 \caption{Topology For Traffic Matrix Demo}
 \label{fig:tm}
-\vspace{-0.15in}
+\vspace{-0.31in}
 \end{figure}
 
 Figure 2 displays the Mininet~\cite{mininet} network topology used for our traffic matrix demo.
@@ -115,14 +116,14 @@ packets/sec) is also plotted to validate the Sluice translation.
 
 \begin{figure}[tp]
 \centering
-\includegraphics[width=84mm,scale=0.7]{figures/exp_obs_cdf}
+\includegraphics[width=84mm, height=34mm]{figures/exp_obs_cdf}
 \vspace{-0.15in}
 \caption{CDF of Packet Rate on link s1-s3}
 \vspace{-0.15in}
 \end{figure}
 
 \subsection{Stream processing}
-
+\vspace{-1mm}
 This example demonstrates a simple join-filter operation between two streams of
 tuples. A stream is an unbounded table where a packet represents a tuple of
 data (\textit{ad\_id, impression\_time, click\_time}) enclosed in a custom
@@ -138,9 +139,9 @@ field at s2 and the result is sent to h3.
 \caption{Streaming example topology, data flow, and code placement on switches}
 \vspace{-5mm}
 \end{figure}
-\vspace{-3mm}
+\vspace{-2mm}
 
-
+\vspace{-1mm}
 \section{Future Work}
 \textbf{An optimizing Sluice compiler.} We envision using the dependency DAG (\S\ref{design}) to
 provide several automatic optimizations and code transformations. For example,
